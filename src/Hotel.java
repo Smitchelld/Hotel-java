@@ -80,8 +80,10 @@ public class Hotel {
             MyMap<Integer, Room> currentFloor = this.floors.get(floor);
             for (Room room : currentFloor.values()) {
                 int roomId = room.getRoomId();
-                if (roomId < 100) {
+                if (roomId < 10) {
                     System.out.print("00" + roomId + " |");
+                } else if (roomId < 100) {
+                    System.out.print("0" + roomId + " |");
                 } else {
                     System.out.print(room.getRoomId() + " |");
                 }
@@ -165,11 +167,16 @@ public class Hotel {
      * @return The current Hotel instance after viewing the room.
      */
     public Hotel view() {
-        System.out.println("Pass room number: ...");
+        System.out.println("Pass room number or \"all\": ...");
         while (true) {
             int roomId;
             try {
-                roomId = Integer.parseInt(scanner.nextLine().strip());
+                String tmp = scanner.nextLine().strip();
+                if(tmp.equals("all")){
+                    print();
+                    return this;
+                }
+                roomId = Integer.parseInt(tmp);
                 if (rooms.containsKey(roomId)) {
                     view(roomId);
                     return this;

@@ -63,7 +63,8 @@ public class Room {
 
     void print(){
         System.out.println();
-        String id = roomId > 100? roomId + "" : "00" + roomId;
+        String id = roomId > 100? roomId + "" : "0" + roomId;
+        id = roomId < 10? "0" + id: id;
         System.out.print(   "RoomID: " + id + "\n" +
                 "Price: " + price + "\n" +
                 "Occupied: " + occupied + "\n");
